@@ -216,7 +216,7 @@ ftrl_trainer::ftrl_trainer(const trainer_option& opt)
     vecDiscount.reserve(cacheSize);
     for(int i = 0; i < cacheSize; ++i)
     {
-        vecDiscount.push_back(1.0/log2(i + 2.0));// discount(i) = 1/log2(i+1), i from 1 to ... 
+        vecDiscount.push_back(1.0/i);// discount(i) = 1/i, i from 1 to ... 
     }
 }
 
@@ -623,7 +623,7 @@ void ftrl_trainer::trainPairFastMode(fm_sample& sample1, fm_sample& sample2, dou
 inline double ftrl_trainer::discount(int i)
 {
     if(i < cacheSize) return vecDiscount[i];
-    return 1.0/log2(i + 2.0);
+    return 1.0/i;
 }
 
 
